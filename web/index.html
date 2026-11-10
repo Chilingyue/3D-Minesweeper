@@ -61,18 +61,27 @@
         <img src="imgs/icon.png" alt="3D扫雷图标" class="mx-auto mb-4" style="width: 8rem; height: 8rem;">
   
         <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gray-800 mb-2">下载 3D扫雷</h2>
-        <p class="text-gray-600 text-lg">最新版本: v2.2</p>
+        <p class="text-gray-600 text-lg">最新版本: <span id="ver">v2.2</span></p>
+
+        <!-- 下载量统计（由 GitHub Releases 数据实时填充，取不到时整块隐藏） -->
+        <div id="dl-stats" class="mt-4 hidden" aria-live="polite">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary text-sm font-semibold">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <span>累计下载 <strong id="dl-total" class="text-base">--</strong> 次</span>
+          </span>
+          <p class="text-xs text-gray-400 mt-2">数据来自 GitHub Releases，约 10 分钟更新一次</p>
+        </div>
       </div>
       
       <div class="mb-8 text-center">
         <p class="text-gray-700 mb-6">点击下方按钮下载最新版本的3D扫雷游戏。支持Windows系统，完全免费！</p>
         
-        <a href="https://github.com/Chilingyue/EasyGame/releases/download/v1.1.2.2/3D.exe" class="btn-download w-full">
+        <a href="https://github.com/Chilingyue/3D-Minesweeper/releases/download/v1.1.2.2/3D.exe" class="btn-download w-full">
           <i class="fa fa-download"></i>
           <span>下载 3D扫雷.exe</span>
         </a>
         
-        <p class="text-sm text-gray-500 mt-4">文件大小: 26.4 MB | 上次更新: 2025-9-6</p>
+        <p id="file-meta" class="text-sm text-gray-500 mt-4">文件大小: 26.4 MB | 上次更新: 2025-9-6</p>
       </div>
       
       <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
@@ -143,6 +152,116 @@
         e.preventDefault();
       }
     });
+  </script>
+
+  <!-- 下载量统计：读取 GitHub Releases 的 download_count -->
+  <script>
+  (function () {
+    var REPO = 'Chilingyue/3D-Minesweeper';
+    var CACHE_KEY = 'dl-stats:3d-minesweeper';
+    var TTL = 10 * 60 * 1000; // 10 分钟缓存，避免触发 GitHub API 未认证限流（60 次/小时/IP）
+
+    var statsBox = document.getElementById('dl-stats');
+    var totalEl = document.getElementById('dl-total');
+    var metaEl = document.getElementById('file-meta');
+    var verEl = document.getElementById('ver');
+    var btn = document.querySelector('a.btn-download');
+
+    function formatNum(n) {
+      return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function render(data) {
+      if (!data || typeof data.total !== 'number' || data.total <= 0) return;
+      totalEl.textContent = formatNum(data.total);
+      statsBox.classList.remove('hidden');
+    }
+
+    function readCache() {
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var c = JSON.parse(raw);
+        if (Date.now() - c.t > TTL) return null;
+        return c;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function writeCache(data) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          t: Date.now(), total: data.total, tag: data.tag, size: data.size, published: data.published
+        }));
+      } catch (e) { /* 隐私模式下写不了缓存，忽略 */ }
+    }
+
+    /* 首选 GitHub API：数字准确，还能顺带拿到最新 asset 的直链、大小与发布时间 */
+    function fromApi() {
+      return fetch('https://api.github.com/repos/' + REPO + '/releases', {
+        headers: { Accept: 'application/vnd.github+json' }
+      })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (list) {
+          if (!Array.isArray(list) || !list.length) throw new Error('empty');
+
+          var total = 0;
+          list.forEach(function (rel) {
+            (rel.assets || []).forEach(function (a) { total += a.download_count || 0; });
+          });
+
+          var latest = list.filter(function (r) { return !r.draft; })[0];
+          var asset = latest && latest.assets && latest.assets[0];
+          return {
+            total: total,
+            tag: latest && latest.tag_name,
+            published: latest && latest.published_at,
+            size: asset && asset.size,
+            url: asset && asset.browser_download_url,
+            name: latest && latest.name
+          };
+        });
+    }
+
+    /* 备选 shields.io 的 JSON 端点（GitHub API 被限流时兜底） */
+    function fromShields() {
+      return fetch('https://img.shields.io/github/downloads/' + REPO + '/total.json')
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (j) {
+          var n = parseInt(String(j.message).replace(/[^\d]/g, ''), 10);
+          if (!isFinite(n)) throw new Error('bad payload');
+          return { total: n };
+        });
+    }
+
+    function applyMeta(data) {
+      if (data.url && btn) btn.setAttribute('href', data.url);
+      if (!metaEl) return;
+      var parts = [];
+      if (data.size) parts.push('文件大小: ' + (data.size / 1048576).toFixed(1) + ' MB');
+      if (data.published) {
+        var d = new Date(data.published);
+        parts.push('上次更新: ' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate());
+      }
+      if (parts.length) metaEl.textContent = parts.join(' | ');
+    }
+
+    var cached = readCache();
+    if (cached) {
+      render(cached);
+      applyMeta(cached);
+      return;
+    }
+
+    fromApi()
+      .then(function (data) { render(data); applyMeta(data); writeCache(data); })
+      .catch(function () {
+        return fromShields()
+          .then(function (data) { render(data); writeCache(data); })
+          .catch(function () { /* 两者都失败：保持隐藏，不影响下载 */ });
+      });
+  })();
   </script>
 </body>
 </html>
