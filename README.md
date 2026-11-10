@@ -1,40 +1,53 @@
-# 3D扫雷 · 3D Minesweeper
+<div align="center">
+  <img src="web/imgs/logo.png" width="440" alt="3D Minesweeper" />
+</div>
 
-[![Downloads](https://img.shields.io/github/downloads/Chilingyue/3D-Minesweeper/total?style=for-the-badge&logo=github&label=%E7%B4%AF%E8%AE%A1%E4%B8%8B%E8%BD%BD)](https://github.com/Chilingyue/3D-Minesweeper/releases)
-[![Latest Release](https://img.shields.io/github/v/release/Chilingyue/3D-Minesweeper?style=for-the-badge&logo=github&label=%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC)](https://github.com/Chilingyue/3D-Minesweeper/releases/latest)
-[![Downloads (latest)](https://img.shields.io/github/downloads/Chilingyue/3D-Minesweeper/latest/total?style=for-the-badge&logo=github&label=%E6%9C%80%E6%96%B0%E7%89%88%E4%B8%8B%E8%BD%BD)](https://github.com/Chilingyue/3D-Minesweeper/releases/latest)
-[![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82)
+<p align="center">
+  <b>English</b> | <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Chilingyue/3D-Minesweeper/releases"><img src="https://img.shields.io/github/downloads/Chilingyue/3D-Minesweeper/total?style=flat-square&logo=github&label=downloads" alt="downloads" /></a>
+  <a href="https://github.com/Chilingyue/3D-Minesweeper/releases/latest"><img src="https://img.shields.io/github/v/release/Chilingyue/3D-Minesweeper?style=flat-square&logo=github&label=version" alt="version" /></a>
+  <img src="https://img.shields.io/badge/platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="platform" />
+</p>
 
 Just for easy game.
 
-一款多层立体玩法的 Windows 桌面扫雷小游戏：把传统二维雷区堆叠成多层，翻层排查，配合多种难度与本地成绩记录。
+A Windows desktop minesweeper that stacks the classic 2D board into **multiple layers** — you sweep plane by plane and have to think in three dimensions. With several difficulty levels and local best-score tracking.
 
-## 下载
+## Download
 
-| 方式 | 链接 |
+| Option | Link |
 | --- | --- |
-| 最新版直接下载（3D.exe，约 26.4 MB） | [Releases](https://github.com/Chilingyue/3D-Minesweeper/releases/latest) |
-| 网页下载页 | https://chilingyue.github.io/3D-Minesweeper/web/index.html |
+| Latest build directly (`3D.exe`, ~26.4 MB) | [Releases](https://github.com/Chilingyue/3D-Minesweeper/releases/latest) |
+| Web download page | https://chilingyue.github.io/3D-Minesweeper/web/index.html |
 
-上述徽章中的「累计下载」「最新版下载」数字会随 Releases 的下载次数自动更新。
+The **downloads** badge above is live: it counts every asset download across all releases and updates automatically.
 
-## 玩法特点
+## Features
 
-- **3D 视觉体验**：多层立体雷区，不再只是一个平面
-- **多种难度**：从入门到噩梦，随难度调整雷区规模
-- **游戏记录**：自动保存成绩，挑战个人最佳
+- **3D visual experience** — layered boards instead of a single plane
+- **Multiple difficulties** — from easy to nightmare, the board grows with the level
+- **Best-score tracking** — results are saved locally, so you can chase your own record
 
-## 系统要求
+## Requirements
 
-- Windows（免安装，下载后双击运行）
-- 无需额外运行库；卸载直接删除文件即可
+- Windows
+- No installer or runtime needed — download, unzip, double-click `3D.exe`
+- To uninstall, just delete the file
 
-## 项目结构
+## Project layout
 
 ```
 3D-Minesweeper/
-├─ README.md
-└─ web/            # 在线下载落地页（Tailwind CSS）
+├─ README.md          # English (this file)
+├─ README.zh-CN.md    # 简体中文
+├─ tools/
+│  └─ make_logo.py    # regenerates the brand logo
+└─ web/               # download landing page (Tailwind CSS)
    ├─ index.html
-   └─ imgs/icon.png
+   └─ imgs/
+      ├─ logo.png     # brand logo
+      └─ icon.png     # game icon
 ```
