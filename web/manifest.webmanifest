@@ -1,0 +1,16 @@
+{
+  "name": "3D扫雷 - 免费 Windows 立体扫雷小游戏",
+  "short_name": "3D扫雷",
+  "description": "多层立体雷区的 Windows 扫雷小游戏，免费免安装。",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#F5C64B",
+  "icons": [
+    { "src": "imgs/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "imgs/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "imgs/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

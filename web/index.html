@@ -3,7 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D扫雷 - 下载页面</title>
+  <title>3D扫雷下载 - 免费 Windows 立体扫雷小游戏</title>
+  <meta name="description" content="3D扫雷（3D Minesweeper）是一款免费 Windows 小游戏：把二维雷区堆叠成多层立体结构，需要逐层排查周围雷数，支持多种难度与本地最佳成绩。免安装，下载 3D.exe 双击即玩。" />
+  <link rel="canonical" href="https://chilingyue.github.io/3D-Minesweeper/web/index.html" />
+  <meta name="theme-color" content="#F5C64B" />
+  <meta name="author" content="Chilingyue" />
+
+  <!-- 站点图标：搜索结果左侧与浏览器标签页显示的就是这一组 -->
+  <link rel="icon" href="imgs/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="imgs/icon-192.png" />
+  <link rel="apple-touch-icon" href="imgs/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- 链接预览（微信/QQ/Twitter/Discord）与部分搜索结果的配图 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3D扫雷" />
+  <meta property="og:title" content="3D扫雷下载 - 免费 Windows 立体扫雷小游戏" />
+  <meta property="og:description" content="多层立体雷区，逐层排查；多种难度与本地成绩记录。免安装，下载 3D.exe 双击即玩。" />
+  <meta property="og:url" content="https://chilingyue.github.io/3D-Minesweeper/web/index.html" />
+  <meta property="og:image" content="https://chilingyue.github.io/3D-Minesweeper/web/imgs/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="3D扫雷 - 免费 Windows 多层立体扫雷小游戏" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="3D扫雷下载 - 免费 Windows 立体扫雷小游戏" />
+  <meta name="twitter:description" content="多层立体雷区，逐层排查；多种难度与本地成绩记录。免安装，下载 3D.exe 双击即玩。" />
+  <meta name="twitter:image" content="https://chilingyue.github.io/3D-Minesweeper/web/imgs/og-cover.png" />
+
+  <!-- 结构化数据：告诉搜索引擎这是一个免费 Windows 游戏 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "3D扫雷",
+    "alternateName": "3D Minesweeper",
+    "applicationCategory": "GameApplication",
+    "applicationSubCategory": "Minesweeper",
+    "operatingSystem": "Windows",
+    "softwareVersion": "2.2",
+    "inLanguage": ["zh-CN", "en"],
+    "url": "https://chilingyue.github.io/3D-Minesweeper/web/index.html",
+    "image": "https://chilingyue.github.io/3D-Minesweeper/web/imgs/og-cover.png",
+    "downloadUrl": "https://github.com/Chilingyue/3D-Minesweeper/releases/latest",
+    "installUrl": "https://chilingyue.github.io/3D-Minesweeper/web/index.html",
+    "description": "把传统二维雷区堆叠成多层立体结构的 Windows 扫雷小游戏，支持多种难度与本地最佳成绩记录，免安装。",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+    "author": { "@type": "Person", "name": "Chilingyue", "url": "https://chilingyue.github.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "3D扫雷是免费的吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "完全免费，无内购、无广告，所有版本都可以直接下载游玩。" }
+      },
+      {
+        "@type": "Question",
+        "name": "3D扫雷需要安装吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不需要安装。下载 3D.exe 后双击即可运行，卸载直接删除文件。" }
+      },
+      {
+        "@type": "Question",
+        "name": "和传统扫雷有什么区别？",
+        "acceptedAnswer": { "@type": "Answer", "text": "传统扫雷只有一层平面，3D扫雷把雷区堆叠成多层立体结构，需要逐层翻查并结合上下层的数字判断雷的位置。" }
+      },
+      {
+        "@type": "Question",
+        "name": "Windows 提示「已保护你的电脑」怎么办？",
+        "acceptedAnswer": { "@type": "Answer", "text": "这是个人开发的免安装程序，未做数字签名，Windows SmartScreen 会对未知发布者的 exe 给出提示。确认是从本页或 GitHub Releases 下载的文件后，点击「更多信息」→「仍要运行」即可。" }
+      }
+    ]
+  }
+  </script>
   <!-- 引入Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- 引入Font Awesome -->
@@ -116,6 +192,69 @@
         <p class="text-gray-600">自动保存游戏记录，挑战个人最佳成绩</p>
       </div>
     </div>
+
+    <!-- 正文介绍：给搜索引擎提供可索引的实质内容 -->
+    <div class="max-w-3xl mx-auto mt-14">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">什么是 3D 扫雷？</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        3D 扫雷是一款把经典扫雷「立体化」的 Windows 小游戏。传统扫雷只有一层平面雷区，而它把格子堆叠到多层空间中——
+        你面对的不再是一个方阵，而是一摞需要逐层翻查的立体结构。数字提示的含义不变，但相邻关系扩展到了上下层，
+        判断雷的位置需要同时在三个方向上推理。
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        游戏完全免费、免安装，下载后双击 <code class="px-1.5 py-0.5 bg-gray-100 rounded text-sm">3D.exe</code> 即可开始。
+        内置多个难度级别，成绩保存在本地，适合当作碎片时间的休闲小游戏。
+      </p>
+
+      <h3 class="text-xl font-bold text-gray-800 mt-8 mb-3">玩法要点</h3>
+      <ul class="list-disc pl-5 text-gray-700 space-y-2">
+        <li>点击格子翻开，数字表示与它相邻的格子中共有多少颗雷。</li>
+        <li>立体结构下，相邻关系包含所在层与上下层，数字比平面扫雷包含更多信息，也更容易误判。</li>
+        <li>在有限步数内定位全部雷格即通关，踩到雷则本局结束。</li>
+        <li>难度越高，雷区规模与层数越大，需要更强的空间推理能力。</li>
+      </ul>
+    </div>
+
+    <!-- 常见问题（与页面结构化数据一致） -->
+    <section class="max-w-3xl mx-auto mt-12">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">常见问题</h2>
+      <div class="space-y-3">
+        <details class="bg-white rounded-lg shadow-sm p-5 group">
+          <summary class="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+            3D 扫雷是免费的吗？
+            <i class="fa fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-gray-600 mt-3">完全免费，无内购、无广告，所有版本都可以直接下载游玩。</p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm p-5 group">
+          <summary class="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+            需要安装吗？会写入注册表吗？
+            <i class="fa fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-gray-600 mt-3">不需要安装。下载得到的是一个独立的 exe 文件，双击即可运行；卸载时直接删除文件即可。</p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm p-5 group">
+          <summary class="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+            和传统扫雷有什么区别？
+            <i class="fa fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-gray-600 mt-3">传统扫雷只有一层平面，3D 扫雷把雷区堆叠成多层立体结构，需要逐层翻查并结合上下层的数字判断雷的位置。</p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm p-5 group">
+          <summary class="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+            Windows 提示「已保护你的电脑」怎么办？
+            <i class="fa fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-gray-600 mt-3">
+            这是个人开发的免安装程序，未做数字签名，Windows SmartScreen 会对未知发布者的 exe 给出提示。
+            确认是从本页或 GitHub Releases 下载的文件后，点击「更多信息」→「仍要运行」即可。
+          </p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <!-- 页脚 -->
